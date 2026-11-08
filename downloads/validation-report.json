@@ -1,0 +1,66 @@
+{
+  "generatedAt": "2026-11-08T09:30:06.123Z",
+  "sourceCommit": "c738e77fbfe6002b98c7e006c852d8e810ab0b14",
+  "rtl": {
+    "date": "2026-11-08",
+    "example": "sat_add8",
+    "tests": [
+      "65536 arithmetic input pairs",
+      "400 deterministic handshake/backpressure/reset cycles",
+      "wraparound mutation rejected"
+    ],
+    "verible": "PASS",
+    "verilator": "PASS",
+    "toolVersions": {
+      "verible": "Version\tv0.0-4075-g795c204a\r\nCommit-Timestamp\t2026-06-15T12:32:08Z\r\nBuilt\t2026-06-15T12:43:38Z",
+      "verilator": "Verilator 5.051 devel rev v5.050-25-g5750c888a (mod)"
+    },
+    "iverilog": "Icarus Verilog version 14.0 (devel) (s20260301-260-gf6848300b-dirty)",
+    "goodLog": "VCD info: dumpfile sat-add.vcd opened for output.\r\nPASS exhaustive: 65536 input pairs, accepted=65537 consumed=65537\r\nPASS handshake/backpressure/reset: 400 deterministic cycles\r\nPASS total checks=65942\r\nexamples\\sat-add\\sat_add8_tb.sv:91: $finish called at 659426000 (1ps)\r\n",
+    "mutationLog": "VCD info: dumpfile sat-add.vcd opened for output.\r\nFATAL: examples\\sat-add\\sat_add8_tb.sv:65: FAIL data/hold/reset: got 0 expected 255 at 26000\r\n       Time: 26000  Scope: sat_add8_tb.step\r\n",
+    "limits": [
+      "Not formal proof of unbounded sequences",
+      "No synthesis/P&R, STA or power measurement performed",
+      "Only the shipped small RTL example was run"
+    ]
+  },
+  "browser": {
+    "ok": true,
+    "modules": 11,
+    "tests": [
+      "data-driven-routes",
+      "deep-links",
+      "reading-vs-evidence",
+      "notes-and-drafts",
+      "rubric-self-assessment",
+      "quiz",
+      "search",
+      "review-settings",
+      "prediction-gates",
+      "lab-params-and-persistence",
+      "export-import",
+      "local-video-no-upload",
+      "flow-comparison",
+      "mobile",
+      "keyboard",
+      "theme"
+    ],
+    "errors": [],
+    "labs": 5,
+    "flows": 7,
+    "timeline": 17
+  },
+  "sourceHashes": {
+    "examples/sat-add/sat_add8.sv": "61ced61b06a439f375e1cf7e6bad68480284a8196556730042955226a838a95e",
+    "examples/sat-add/sat_add8_tb.sv": "d92e010243b33693f1c4a4c3aee14d56c26fcf26e848b6ffb1b22f6d7d17a162",
+    "src/models.js": "6625cf604ad553b18334482b1482ec190e6d212ccb5c417f5b46d1ea20db2faf",
+    "src/labs.js": "2131f153dbb45cfeadcdf0a84c119dde8088b641a50e0996aa242d314adf9172",
+    "content/course.json": "4ac08f2a239a64eb6d73dacd7f5219d46a377e05e6944a3121cd176997acc953"
+  },
+  "automatedChecks": "\r\n> ai-workflow-learning-lab@1.0.0 test\r\n> node tools/test-state.cjs && node tools/validate-content.cjs && node --test tests/models.test.cjs\r\n\r\nPASS state: validated import, unknown IDs, prototype keys, independent evidence and adjustable review schedule.\r\nPASS content integrity: 11 modules, 30 sources, 5 labs; references, dependencies, exercises and HTML.\r\nPASS: approximation bounds, saturation, pipeline conservation/backpressure, oracle counterexample and Pareto boundaries\r\n✔ tests\\models.test.cjs (90.056ms)\r\nℹ tests 1\r\nℹ suites 0\r\nℹ pass 1\r\nℹ fail 0\r\nℹ cancelled 0\r\nℹ skipped 0\r\nℹ todo 0\r\nℹ duration_ms 95.429\r\n",
+  "limits": [
+    "Not formal proof of unbounded sequences",
+    "No synthesis/P&R, STA or power measurement performed",
+    "Only the shipped small RTL example was run"
+  ]
+}

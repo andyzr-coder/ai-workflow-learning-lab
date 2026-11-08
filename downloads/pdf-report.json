@@ -1,0 +1,69 @@
+{
+  "artifact": "ai-workflow-handbook.pdf",
+  "format": "PDF 1.7 / A4",
+  "pages": 65,
+  "bytes": 931199,
+  "sha256": "f4a1d93924ec0cd208867e6db141b6a555db5d56ee817990f5d9ccf87aac0753",
+  "source": "content/course.json",
+  "sourceSha256": "4ac08f2a239a64eb6d73dacd7f5219d46a377e05e6944a3121cd176997acc953",
+  "generator": "Pandoc 3.10 + Eisvogel + XeLaTeX",
+  "content": {
+    "modules": 11,
+    "openExercises": 33,
+    "openAnswersVerified": 33,
+    "quizzes": 15,
+    "quizExplanationsVerified": 15,
+    "flows": 7,
+    "timelineEntries": 17,
+    "sources": 30,
+    "sourceTitlesVerified": 30
+  },
+  "text": {
+    "missingGlyphWarnings": 0,
+    "unmappedCIDMarkers": 0,
+    "replacementCharacters": 0,
+    "allFontsEmbedded": true,
+    "embeddedFontFamilies": 7,
+    "overfullBoxWarnings": 0
+  },
+  "pagesCheck": {
+    "blankPages": [],
+    "coverTextCharacters": 45,
+    "coverIsBlank": false,
+    "note": "封面是标题、副标题和日期；少字封面不等于空白页。",
+    "nearPageEdgeCharacters": 0
+  },
+  "links": {
+    "externalAnnotations": 65,
+    "internalAnnotations": 276,
+    "unresolvedInternalDestinations": [],
+    "note": "PDF 内部链接已验证目标存在；外部链接保留公开源地址，访问需联网。"
+  },
+  "javascript": {
+    "present": false,
+    "openAction": "GoTo page with /Fit view; not a JavaScript action",
+    "formsOrWebControlsIncluded": false
+  },
+  "visualReview": {
+    "status": "passed",
+    "allPagesReviewed": 65,
+    "contactSheets": 6,
+    "thumbnailRenderDpi": 65,
+    "highResolutionDpi": 150,
+    "representativePages": [
+      1,
+      13,
+      16,
+      26,
+      39,
+      40,
+      61,
+      65
+    ],
+    "findings": "完整浏览全页缩略图，并核对封面、正文、代码、公式、表格、答案与来源代表页。未发现缺字、裁切或重叠。保留正常章末留白。"
+  },
+  "offlineBehavior": "完整正文、练习、答案、目录与来源已保留；纸面推演替代控件交互。外部来源、示例下载和在线验证报告需要网络。",
+  "privacy": "只读取共享公开课程数据；未嵌入原视频、截图、私有逐字稿或私有研究目录。",
+  "buildCommand": "node tools/build-pdf.cjs",
+  "checkedAt": "2026-11-08T09:29:25.294977+00:00"
+}

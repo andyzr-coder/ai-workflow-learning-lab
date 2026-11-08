@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-11-08T09:30:06.248Z",
+  "files": [
+    {
+      "file": "ai-workflow-handbook.html",
+      "bytes": 187556,
+      "sha256": "3ca1facf24c1c944030b6a084454e09832735ace4ccfd2b1a8bcf81f22f63212"
+    },
+    {
+      "file": "ai-workflow-handbook.pdf",
+      "bytes": 931199,
+      "sha256": "f4a1d93924ec0cd208867e6db141b6a555db5d56ee817990f5d9ccf87aac0753"
+    },
+    {
+      "file": "course-data.json",
+      "bytes": 181965,
+      "sha256": "4ac08f2a239a64eb6d73dacd7f5219d46a377e05e6944a3121cd176997acc953"
+    },
+    {
+      "file": "handbook-print.html",
+      "bytes": 188001,
+      "sha256": "d5e78377f97fbc23f090f0a3b523994053ff22494df01ee527e1412c36cc380a"
+    },
+    {
+      "file": "pdf-report.json",
+      "bytes": 2347,
+      "sha256": "9b84949813c3a517d47b90959e36871a55f35dbe79fc1d9cb4fa6a657d1c4c47"
+    },
+    {
+      "file": "README.md",
+      "bytes": 6171,
+      "sha256": "5d64952056e6173389a601552ae5cd91540f70c2d48f91b2214a5912b933f6a2"
+    },
+    {
+      "file": "sat-add-good.vcd",
+      "bytes": 95464,
+      "sha256": "c7ddf0b31515aac7477562ee35db0f0945db391d8b855d40285abe7a2eeee261"
+    },
+    {
+      "file": "source.zip",
+      "bytes": 137138,
+      "sha256": "d865cfe629527709e558ba287a1d3f50dc63232c1e446aeb88382c425b7b35d8"
+    },
+    {
+      "file": "sources.json",
+      "bytes": 20727,
+      "sha256": "fbcc30bae65942789929af1d5f5efea95bd6cbc89026dd6e9657611d03afacc3"
+    },
+    {
+      "file": "validation-report.json",
+      "bytes": 3311,
+      "sha256": "24efc596ccbe10a93366a2d9ebbd0aba50d7f6e009b46c4577f572ec439b4ca3"
+    },
+    {
+      "file": "video-summary.json",
+      "bytes": 5485,
+      "sha256": "a8d456b1fed0c1668918c8b1242b7ae63dd548b407851c22bbdf1d8b3fe9bff8"
+    }
+  ]
+}
