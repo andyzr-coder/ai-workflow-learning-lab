@@ -21,4 +21,3 @@ if(archive.status!==0)throw Error('Commit the source before packaging: '+archive
 const names=fs.readdirSync(out).filter(f=>f!=='download-manifest.json'&&fs.statSync(path.join(out,f)).isFile());
 fs.writeFileSync(path.join(out,'download-manifest.json'),JSON.stringify({generatedAt:new Date().toISOString(),files:names.map(file=>({file,bytes:fs.statSync(path.join(out,file)).size,sha256:sha(path.join(out,file))}))},null,2));
 console.log('Packaged '+names.length+' public downloads.');
-

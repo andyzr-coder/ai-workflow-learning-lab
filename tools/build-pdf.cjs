@@ -94,7 +94,3 @@ run([...cmd,'-o',tex]);
 run([...cmd,'--verbose','-o',output]);
 const manifest={content:content,contentSha256:crypto.createHash('sha256').update(fs.readFileSync(content)).digest('hex'),output,outputBytes:fs.statSync(output).size,modules:d.modules.length,openExercises:d.modules.reduce((n,m)=>n+(m.exercises||[]).length,0),quizzes:d.modules.reduce((n,m)=>n+(m.quiz||[]).length,0),flows:(d.flows||[]).length,sources:d.sources.length,timeline:(d.timeline||[]).length,createdAt:new Date().toISOString()};
 fs.writeFileSync(path.join(work,'manifest.json'),JSON.stringify(manifest,null,2));console.log(JSON.stringify(manifest,null,2));
-
-
-
-

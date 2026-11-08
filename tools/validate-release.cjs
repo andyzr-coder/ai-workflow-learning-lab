@@ -12,4 +12,3 @@ for(const [,hash] of html.matchAll(/href="#([^"]+)"/g))assert.ok(ids.has(decodeU
 for(const file of ['index.html','content.js','style.css','enhancements.css','storage.js','views.js','models.js','labs.js','app.js'])assert.ok(fs.statSync(path.join(dist,file)).size>0,file);
 const summary={ok:true,date:new Date().toISOString(),sourceFiles:files.length,downloads:manifest.files.length,offlineAnchors:ids.size,checks:['source privacy patterns','download checksums','PDF signature','offline internal links','static assets']};
 fs.mkdirSync(path.join(root,'output/release'),{recursive:true});fs.writeFileSync(path.join(root,'output/release/report.json'),JSON.stringify(summary,null,2));console.log(JSON.stringify(summary,null,2));
-

@@ -81,4 +81,3 @@ PDF 构建支持 PANDOC、XELATEX、EISVOGEL 环境变量。先执行 npm run bu
 main 保留完整源码，gh-pages 只发布 dist 内容。GitHub Pages 使用 gh-pages 分支根目录。原参考站 memory-architecture-lab 保持独立；新课程借鉴其学习导航与实验组织思路，采用共享数据以便复用。
 
 课程内容为原创整理，原始文献和官方资料的权利归各作者；来源链接与阅读边界保存在 content/course.json。代码与原创课程内容采用 MIT License。
-
