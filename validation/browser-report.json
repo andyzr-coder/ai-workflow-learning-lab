@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "modules": 11,
+  "tests": [
+    "data-driven-routes",
+    "deep-links",
+    "reading-vs-evidence",
+    "notes-and-drafts",
+    "rubric-self-assessment",
+    "quiz",
+    "search",
+    "review-settings",
+    "prediction-gates",
+    "lab-params-and-persistence",
+    "export-import",
+    "local-video-no-upload",
+    "flow-comparison",
+    "mobile",
+    "keyboard",
+    "theme"
+  ],
+  "errors": [],
+  "labs": 5,
+  "flows": 7,
+  "timeline": 17
+}

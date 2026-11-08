@@ -1,0 +1,10 @@
+node_modules/
+dist/
+output/
+.env
+.env.*
+*.log
+private/
+*.mp4
+*.wav
+*.srt

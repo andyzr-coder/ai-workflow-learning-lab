@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-08",
+  "example": "sat_add8",
+  "tests": [
+    "65536 arithmetic input pairs",
+    "400 deterministic handshake/backpressure/reset cycles",
+    "wraparound mutation rejected"
+  ],
+  "verible": "PASS",
+  "verilator": "PASS",
+  "toolVersions": {
+    "verible": "Version\tv0.0-4075-g795c204a\r\nCommit-Timestamp\t2026-06-15T12:32:08Z\r\nBuilt\t2026-06-15T12:43:38Z",
+    "verilator": "Verilator 5.051 devel rev v5.050-25-g5750c888a (mod)"
+  },
+  "iverilog": "Icarus Verilog version 14.0 (devel) (s20260301-260-gf6848300b-dirty)",
+  "goodLog": "VCD info: dumpfile sat-add.vcd opened for output.\r\nPASS exhaustive: 65536 input pairs, accepted=65537 consumed=65537\r\nPASS handshake/backpressure/reset: 400 deterministic cycles\r\nPASS total checks=65942\r\nexamples\\sat-add\\sat_add8_tb.sv:91: $finish called at 659426000 (1ps)\r\n",
+  "mutationLog": "VCD info: dumpfile sat-add.vcd opened for output.\r\nFATAL: examples\\sat-add\\sat_add8_tb.sv:65: FAIL data/hold/reset: got 0 expected 255 at 26000\r\n       Time: 26000  Scope: sat_add8_tb.step\r\n",
+  "limits": [
+    "Not formal proof of unbounded sequences",
+    "No synthesis/P&R, STA or power measurement performed",
+    "Only the shipped small RTL example was run"
+  ]
+}

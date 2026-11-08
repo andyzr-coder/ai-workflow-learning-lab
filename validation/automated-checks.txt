@@ -1,0 +1,16 @@
+
+> ai-workflow-learning-lab@1.0.0 test
+> node tools/test-state.cjs && node tools/validate-content.cjs && node --test tests/models.test.cjs
+
+PASS state: validated import, unknown IDs, prototype keys, independent evidence and adjustable review schedule.
+PASS content integrity: 11 modules, 30 sources, 5 labs; references, dependencies, exercises and HTML.
+PASS: approximation bounds, saturation, pipeline conservation/backpressure, oracle counterexample and Pareto boundaries
+✔ tests\models.test.cjs (90.056ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 95.429

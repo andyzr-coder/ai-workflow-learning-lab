@@ -1,0 +1,9 @@
+const assert=require('node:assert/strict'),S=require('../src/storage.js');
+const course={modules:[{id:'m',quiz:[{options:['a','b']}],exercises:[{id:'e',maxScore:4}]}],labs:[{id:'lab'}]};
+const state=S.empty();state.reading=['m','unknown','m'];state.notes={m:'<script>not executed</script>',unknown:'discard'};state.answers={'m:0':1,'m:1':9};state.drafts={'m:e':'proof'};state.evidence={'m:e':{score:3,at:'2026-11-08T01:00:00Z'}};state.labs.lab={prediction:'test',param:2};
+const clean=S.sanitize(state,course,true);assert.deepEqual(clean.reading,['m']);assert.equal(clean.notes.m,state.notes.m);assert.equal(clean.notes.unknown,undefined);assert.deepEqual(clean.answers,{'m:0':1});assert.equal(clean.evidence['m:e'].method,'self');assert.equal(clean.labs.lab.param,2);
+const other={...course,id:'another-learning-topic'},otherState=S.empty('another-learning-topic');assert.equal(S.sanitize(otherState,other,true).course,'another-learning-topic');assert.throws(()=>S.sanitize(state,other,true));
+for(const bad of [{...state,version:1},{...state,unexpected:true},{...state,course:'other'},{...state,review:{intervals:[7,1],records:{}}},{...state,notes:[]}])assert.throws(()=>S.sanitize(bad,course,true));
+const malicious=JSON.parse(JSON.stringify(state).replace('"param":2','"param":2,"__proto__":{"polluted":true}'));assert.equal(S.sanitize(malicious,course,true).labs.lab.polluted,undefined);assert.equal({}.polluted,undefined);
+const now=new Date('2026-11-08T00:00:00Z');S.review(clean,'m',false,now);assert.equal(clean.review.records.m.stage,0);assert.equal(clean.review.records.m.due,'2026-11-09T00:00:00.000Z');S.review(clean,'m',true,now);assert.equal(clean.review.records.m.stage,1);assert.equal(clean.review.records.m.due,'2026-11-11T00:00:00.000Z');
+console.log('PASS state: validated import, unknown IDs, prototype keys, independent evidence and adjustable review schedule.');

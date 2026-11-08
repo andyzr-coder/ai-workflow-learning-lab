@@ -1,0 +1,24 @@
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),cp=require('node:child_process');
+const root=path.resolve(__dirname,'..'),out=path.join(root,'dist/downloads');
+fs.mkdirSync(out,{recursive:true});
+for(const file of ['ai-workflow-handbook.pdf','ai-workflow-handbook.html','course-data.json','sources.json'])if(!fs.existsSync(path.join(out,file)))throw Error('Missing artifact: '+file);
+const rtl=JSON.parse(fs.readFileSync(path.join(root,'validation/rtl-report.json'),'utf8'));
+const browser=JSON.parse(fs.readFileSync(path.join(root,'validation/browser-report.json'),'utf8'));
+const sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const files=['examples/sat-add/sat_add8.sv','examples/sat-add/sat_add8_tb.sv','src/models.js','src/labs.js','content/course.json'];
+const hashes=Object.fromEntries(files.map(f=>[f,sha(path.join(root,f))]));
+const sourceCommit=cp.spawnSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).stdout.trim();
+const checksPath=path.join(root,'validation/automated-checks.txt');
+const report={generatedAt:new Date().toISOString(),sourceCommit,rtl,browser,sourceHashes:hashes,automatedChecks:fs.existsSync(checksPath)?fs.readFileSync(checksPath,'utf8'):'See npm test',limits:rtl.limits};
+fs.writeFileSync(path.join(out,'validation-report.json'),JSON.stringify(report,null,2));
+fs.copyFileSync(path.join(root,'README.md'),path.join(out,'README.md'));
+if(fs.existsSync(path.join(root,'validation/pdf-report.json')))fs.copyFileSync(path.join(root,'validation/pdf-report.json'),path.join(out,'pdf-report.json'));
+const course=JSON.parse(fs.readFileSync(path.join(root,'content/course.json'),'utf8'));
+fs.writeFileSync(path.join(out,'video-summary.json'),JSON.stringify(course.videoSummary,null,2));
+if(fs.existsSync(path.join(root,'output/rtl/sat-add-good.vcd')))fs.copyFileSync(path.join(root,'output/rtl/sat-add-good.vcd'),path.join(out,'sat-add-good.vcd'));
+const archive=cp.spawnSync('git',['archive','--format=zip','HEAD','-o',path.join(out,'source.zip')],{cwd:root,encoding:'utf8'});
+if(archive.status!==0)throw Error('Commit the source before packaging: '+archive.stderr);
+const names=fs.readdirSync(out).filter(f=>f!=='download-manifest.json'&&fs.statSync(path.join(out,f)).isFile());
+fs.writeFileSync(path.join(out,'download-manifest.json'),JSON.stringify({generatedAt:new Date().toISOString(),files:names.map(file=>({file,bytes:fs.statSync(path.join(out,file)).size,sha256:sha(path.join(out,file))}))},null,2));
+console.log('Packaged '+names.length+' public downloads.');
+

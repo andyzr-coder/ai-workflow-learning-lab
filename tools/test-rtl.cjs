@@ -1,0 +1,16 @@
+const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
+const root=path.resolve(__dirname,'..'),dir=path.join(root,'output/rtl');fs.mkdirSync(dir,{recursive:true});
+const win=process.platform==='win32',bin=win?'F:/eda_tools/oss-cad-suite/bin/':'';
+const env={...process.env,PATH:(win?bin+';'+path.resolve(bin,'../lib')+';':'')+process.env.PATH,VERILATOR_ROOT:win?'F:/eda_tools/oss-cad-suite/share/verilator':process.env.VERILATOR_ROOT};
+const run=(command,args,expected=0)=>{const r=cp.spawnSync(command,args,{cwd:dir,env,encoding:'utf8',timeout:120000});const output=(r.stdout||'')+(r.stderr||'');if(r.status!==expected)throw Error(command+' failed ('+r.status+') '+output);return output;};
+const rtl=path.join(root,'examples/sat-add/sat_add8.sv'),tb=path.join(root,'examples/sat-add/sat_add8_tb.sv');
+const iv=bin+'iverilog'+(win?'.exe':''),vvp=bin+'vvp'+(win?'.exe':'');
+const lint=run(win?'F:/eda_tools/verible/verible-verilog-lint.exe':'verible-verilog-lint',['--rules=-line-length',rtl]);
+const vl=run(bin+'verilator_bin'+(win?'.exe':''),['--lint-only','-Wall','--top-module','sat_add8',rtl]);
+run(iv,['-g2012','-Wall','-s','sat_add8_tb','-o','good.vvp',rtl,tb]);
+const good=run(vvp,['good.vvp']);if(!good.includes('PASS total checks='))throw Error('Missing PASS marker');
+fs.copyFileSync(path.join(dir,'sat-add.vcd'),path.join(dir,'sat-add-good.vcd'));
+const mutant=path.join(dir,'sat_add8_mutant.sv');fs.writeFileSync(mutant,fs.readFileSync(rtl,'utf8').replace("sum_ext[8] ? 8'hff : sum_ext[7:0]",'sum_ext[7:0]'));
+run(iv,['-g2012','-s','sat_add8_tb','-o','mutant.vvp',mutant,tb]);const bad=run(vvp,['mutant.vvp'],1);if(!bad.includes('FAIL data/hold/reset'))throw Error('Mutation not detected');
+const evidence={date:'2026-11-08',example:'sat_add8',tests:['65536 arithmetic input pairs','400 deterministic handshake/backpressure/reset cycles','wraparound mutation rejected'],verible:'PASS',verilator:'PASS',toolVersions:{verible:run(win?'F:/eda_tools/verible/verible-verilog-lint.exe':'verible-verilog-lint',['--version']).trim(),verilator:run(bin+'verilator_bin'+(win?'.exe':''),['--version']).trim()},iverilog:run(iv,['-V']).split('\n')[0].trim(),goodLog:good.replaceAll(root+path.sep,''),mutationLog:bad.replaceAll(root+path.sep,''),limits:['Not formal proof of unbounded sequences','No synthesis/P&R, STA or power measurement performed','Only the shipped small RTL example was run']};
+fs.writeFileSync(path.join(dir,'validation-report.json'),JSON.stringify(evidence,null,2));console.log(JSON.stringify(evidence,null,2));
